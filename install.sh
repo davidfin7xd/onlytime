@@ -19,13 +19,6 @@ if [[ "${ALLOW_NON_TERMUX:-0}" = "1" ]]; then
     # Create if missing so awk/mv won't fail later
     : > "$BASHRC" || die "Cannot create $BASHRC"
   fi
-else
-  # --- Termux guard ---
-  [[ -n "${PREFIX:-}" && "$PREFIX" == *"/com.termux/"* ]] || die "Run inside Termux."
-  BASHRC="$PREFIX/etc/bash.bashrc"
-  [[ -f "$BASHRC" ]] || die "Cannot find $BASHRC"
-fi
-
 
 # --- Uninstall (remove only our tagged block) ---
 if [[ "${1:-}" == "--uninstall" ]]; then
