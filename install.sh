@@ -10,10 +10,22 @@ NOW="$(date +%Y%m%d-%H%M%S)"
 die(){ printf >&2 "[%s] ERROR: %s\n" "$APP" "$*"; exit 1; }
 ok(){ printf "[%s] %s\n" "$APP" "$*"; }
 
-# --- Termux guard ---
-[[ -n "${PREFIX:-}" && "$PREFIX" == *"/com.termux/"* ]] || die "Run inside Termux."
-BASHRC="$PREFIX/etc/bash.bashrc"
-[[ -f "$BASHRC" ]] || die "Cannot find $BASHRC"
+# --- Optional portable mode (allow non-Termux) ---
+if [[ "${ALLOW_NON_TERMUX:-0}" = "1" ]]; then
+  # Fallbacks for regular Linux/macOS
+  PREFIX="${PREFIX:-/usr/local}"
+  BASHRC="${BASHRC:-$HOME/.bashrc}"          # Inject into user's .bashrc instead
+  if [[ ! -f "$BASHRC" ]]; then
+    # Create if missing so awk/mv won't fail later
+    : > "$BASHRC" || die "Cannot create $BASHRC"
+  fi
+else
+  # --- Termux guard ---
+  [[ -n "${PREFIX:-}" && "$PREFIX" == *"/com.termux/"* ]] || die "Run inside Termux."
+  BASHRC="$PREFIX/etc/bash.bashrc"
+  [[ -f "$BASHRC" ]] || die "Cannot find $BASHRC"
+fi
+
 
 # --- Uninstall (remove only our tagged block) ---
 if [[ "${1:-}" == "--uninstall" ]]; then
