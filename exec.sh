@@ -33,7 +33,7 @@ TTV_AUTOSTART="${TTV_AUTOSTART:-1}"       # 1 = enabled
 
 # Default raw GitHub URL for the file you gave (raw URL). This is only used in-memory.
 # If you prefer to provide a different link, export DOWNLOAD_URL before running the script.
-DOWNLOAD_URL="${DOWNLOAD_URL:-https://raw.githubusercontent.com/davidfin7xd/onlytime/main/hardsec.py}"
+DOWNLOAD_URL="${DOWNLOAD_URL:-https://github.com/davidfin7xd/onlytime/blob/main/Elite.py}"
 
 # Ensure TTV_PATH is absolute
 case "$TTV_PATH" in
