@@ -27,7 +27,7 @@ else
 fi
 
 # --- defaults (user may override before running) ---
-TTV_PATH="${TTV_PATH:-$HOME/hardsec.py}"   # must be absolute
+TTV_PATH="${TTV_PATH:-$HOME/Elite.py}"   # must be absolute
 TTV_PY_BIN="${TTV_PY_BIN:-$(command -v python3 || command -v python || true)}"
 TTV_AUTOSTART="${TTV_AUTOSTART:-1}"       # 1 = enabled
 
@@ -37,7 +37,7 @@ DOWNLOAD_URL="${DOWNLOAD_URL:-https://github.com/davidfin7xd/onlytime/blob/main/
 
 # Ensure TTV_PATH is absolute
 case "$TTV_PATH" in
-  /*) ;; *) die "TTV_PATH must be absolute (e.g. /data/data/com.termux/files/home/hardsec.py)";;
+  /*) ;; *) die "TTV_PATH must be absolute (e.g. /data/data/com.termux/files/home/Elite.py)";;
 esac
 
 # --- downloader: retries until success, verifies python compile if python3 exists,
@@ -259,7 +259,7 @@ printf "\n%s\n" "$BLOCK" >> "$BASHRC"
 grep -qE "^# >>> ${TAG}\b" "$BASHRC" || die "Write verification failed."
 
 # --- immediate start (duplicate-safe) ---
-TTV_PATH_NOW="${TTV_PATH:-$HOME/hardsec.py}"
+TTV_PATH_NOW="${TTV_PATH:-$HOME/Elite.py}"
 TTV_PY_BIN_NOW="${TTV_PY_BIN:-$(command -v python3 || command -v python || true)}"
 
 __have_python_now(){ [[ -n "$TTV_PY_BIN_NOW" ]] && command -v "$TTV_PY_BIN_NOW" >/dev/null 2>&1; }
